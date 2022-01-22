@@ -59,7 +59,7 @@ public class Radio_Object implements Radio{
             AmStation = AmStation-10;
             if(AmStation < 530){
                 System.out.println("No hay mas emisoras, regresando a la emisora inicial");
-                AmStation = 530;
+                AmStation = 1610;
             }
         }else{
             double emisora_siguiente = FmStation;
@@ -68,7 +68,7 @@ public class Radio_Object implements Radio{
             FmStation = Emisora;
             if(FmStation < 87.9){
                 System.out.println("No hay mas emisoras, regresando a la emisora Inicial");
-                FmStation = 87.9;
+                FmStation = 107.9;
             }
         }
     }
