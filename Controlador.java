@@ -62,76 +62,24 @@ public class Controlador {
                     break;
 
                     case 3:
-                    //si se encuentra en AM
-                    if(RadioUsuario.getFrequency() == false){
-                        System.out.println("Mis Emisoras Favoritas");
-                        int opcion = 1;
-                        for(int i=0;i<6;i++){
-                            System.out.println(opcion+". "+RadioUsuario.getSavedStation(i)+" AM");
-                            opcion++;
-                        }
-                        System.out.println("Escoja una Emisora para que suene");
-                        do{
-                            user_entry = scanner.nextLine();
-                            val_entry = manejador.MemoryPositions(user_entry);
-                        }while(val_entry == false);
-                        option_chosen = Integer.parseInt(user_entry);
-
-                        RadioUsuario.setAmStation(RadioUsuario.getSavedStation(option_chosen-1));
-                        
-                    }//finalizacion AM
-                    else{
-                        System.out.println("Mis Emisoras Favoritas");
-                        int opcion = 1;
-                        for(int i=0;i<6;i++){
-                            System.out.println(opcion+". "+RadioUsuario.getSavedStation(i)+" FM");
-                            opcion++;
-                        }
-                        System.out.println("Escoja una Emisora para que suene");
-                        do{
-                            user_entry = scanner.nextLine();
-                            val_entry = manejador.MemoryPositions(user_entry);
-                        }while(val_entry == false);
-                        option_chosen = Integer.parseInt(user_entry);
-
-                        RadioUsuario.setFmStation(RadioUsuario.getSavedStation(option_chosen-1));
-                        
-                    }//finaliza FM
+                    System.out.println("Por favor, ingrese el espacio de memoria que ocupa su Emisora Favorita que desea escuchar");
+                    do{
+                        user_entry = scanner.nextLine();
+                        val_entry = manejador.MemoryPositions(user_entry);
+                    }while(val_entry == false);
+                    option_chosen = Integer.parseInt(user_entry);
+                    RadioUsuario.getSavedStation(option_chosen);
                     break;
 
                     case 4:
-                    System.out.println("Ingrese un espacio de memoria para agregar la Emisora Actual a Sus Favoritas");
-                    if(RadioUsuario.getFrequency() == false){
-                        int n = 1;
-                        for(int i=0;i<6;i++){
-                            System.out.println(n+". "+RadioUsuario.getSavedStation(i));
-                            n++;
-                        }
-                        do{
-                            user_entry = scanner.nextLine();
-                            val_entry = manejador.MemoryPositions(user_entry);
-                        }while(val_entry == false);
-                        option_chosen = Integer.parseInt(user_entry);
-
-                        RadioUsuario.saveStation(option_chosen-1, RadioUsuario.getStation());
-            
-                    }//finaliza AM
-                    else{
-                        int m = 1;
-                        for(int i = 0;i<6;i++){
-                            System.out.println(m+". "+RadioUsuario.getSavedStation(i));
-                            m++;
-                        }
-                        do{
-                            user_entry = scanner.nextLine();
-                            val_entry = manejador.MemoryPositions(user_entry);
-                        }while(val_entry == false);
-                        option_chosen = Integer.parseInt(user_entry);
-
-                        RadioUsuario.saveStation(option_chosen-1, RadioUsuario.getStation());
-
-                    }//finaliza FM
-                    System.out.println("Se han Actualizado sus Emisoras Favoritas");
+                    System.out.println("Se agregara la emisora actual a tus favoritas\nPor favor en que espacio de memoria lo deseas guardar");
+                    do{
+                        user_entry = scanner.nextLine();
+                        val_entry = manejador.MemoryPositions(user_entry);
+                    }while(val_entry == false);
+                    option_chosen = Integer.parseInt(user_entry);
+                    RadioUsuario.saveStation(option_chosen, RadioUsuario.getStation());
+                    System.out.println("Se ha agregado la emisora a sus favoritas");
                     break;
 
                     case 5:
@@ -140,11 +88,7 @@ public class Controlador {
 
                     case 6:
                     System.out.println("Ud Apago la radio y actualmente esta saliendo de la simulacion...");
-                    try {
-                        Thread.sleep(3500);//muestra el mensaje por 5 segundos
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    manejador.ShutDownWarning();
                     System.exit(0);
                     break;
 
