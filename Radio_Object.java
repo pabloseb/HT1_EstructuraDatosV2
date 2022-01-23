@@ -12,7 +12,7 @@ public class Radio_Object implements Radio{
 
     Radio_Object(){}
     private boolean RadioOn = false; //inicialmente la radio se encuentra apagada
-    private boolean Frequency = false;//falso para modulacion AM, Verdadero para Modulacion FM
+    private boolean Frequency = true;//true para modulacion AM, false para Modulacion FM
     private double AmStation = 530;
     private double FmStation = 87.9;
     private double CurrentStation;
@@ -41,7 +41,7 @@ public class Radio_Object implements Radio{
  */
     @Override
     public void nextStation(boolean frequency) {
-        if(frequency == false){
+        if(frequency == true){
             AmStation = AmStation+10;
             if(AmStation > 1610){
                 AmStation = 530;
@@ -61,9 +61,10 @@ public class Radio_Object implements Radio{
  */
     @Override
     public void prevStation(boolean frequency) {
-        if(frequency == false){
+        if(frequency == true){
             AmStation = AmStation-10;
             if(AmStation < 530){
+                AmStation = 1610;
             }
         }else{
             double emisora_siguiente = FmStation;
@@ -81,7 +82,7 @@ public class Radio_Object implements Radio{
  */
     @Override
     public double getStation() {
-        if(Frequency == false){
+        if(Frequency == true){
             CurrentStation = AmStation;
         }else{
             CurrentStation = FmStation;
@@ -93,7 +94,7 @@ public class Radio_Object implements Radio{
  */
     @Override
     public void saveStation(int position, double station) {
-        if(Frequency == false){
+        if(Frequency == true){
             switch(position){
                 case 1:
                 FavoriteStations[0] = station;
@@ -143,7 +144,7 @@ public class Radio_Object implements Radio{
  */
     @Override
     public double getSavedStation(int position) {
-        if(Frequency == false){
+        if(Frequency == true){
             switch(position){
                 case 1:
                 AmStation = FavoriteStations[0];
@@ -166,7 +167,7 @@ public class Radio_Object implements Radio{
             }
             CurrentStation = AmStation;
         }//se encuentra en AM
-        if(Frequency == true){
+        if(Frequency == false){
             if(position==1){
                 FmStation = FavoriteStations[6];
             }

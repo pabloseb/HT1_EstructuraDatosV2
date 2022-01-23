@@ -48,7 +48,7 @@ public class Controlador {
                     System.out.println("2.Emisora Anterior");
                     System.out.println("3.Acceder a Mis Emisoras Favoritas para esta modulacion");
                     System.out.println("4.Agregar Emisora Actual a Favoritas");
-                    if(RadioUsuario.getFrequency() == false){
+                    if(RadioUsuario.getFrequency() == true){
                         System.out.println("5.Cambiarme a FM");
                     }
                     else{
