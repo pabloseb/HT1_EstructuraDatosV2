@@ -17,6 +17,7 @@ public class Radio_Object implements Radio{
     private double FmStation = 87.9;
     private double CurrentStation;
     private double[] FavoriteStations = {530,530,530,530,530,530,87.9,87.9,87.9,87.9,87.9,87.9};
+
 /**
  * Regresa estado Actual de la Radio
  */
@@ -63,7 +64,6 @@ public class Radio_Object implements Radio{
         if(frequency == false){
             AmStation = AmStation-10;
             if(AmStation < 530){
-                AmStation = 1610;
             }
         }else{
             double emisora_siguiente = FmStation;

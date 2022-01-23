@@ -100,7 +100,9 @@ public class Controlador {
 
                     case 6:
                     System.out.println("Ud Apago la radio y actualmente esta saliendo de la simulacion...");
+
                     manejador.ShutDownWarning();
+
                     System.exit(0);
                     break;
 
