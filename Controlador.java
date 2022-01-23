@@ -1,10 +1,19 @@
+/**
+ * @author Pablo Herrera, Pedro Marroquin & Jose Auyon
+ * @since 22/01/2022
+ * @version 2.0
+ * 
+ * Esta es la clase que lleva la logica del programa.
+ */
 import java.util.Scanner;
 public class Controlador {
     Controlador(){}
     Scanner scanner = new Scanner(System.in);
     Manejador manejador = new Manejador();
     Radio_Object RadioUsuario = new Radio_Object();
-
+/**
+ * Metodo que se encarga de ejecutar el programa, no regresa o necesita valor alguno
+ */
     public void ProgramLogic(){
         String user_entry;//para que el usuario ingrese informacion
         int option_chosen;//castear los datos string a int para los menus
@@ -12,6 +21,9 @@ public class Controlador {
         boolean RunRadio = true;//mantiene vivo el loop
 
         if(RadioUsuario.isOn() == false){
+            RadioUsuario.turnOnOff();
+        }
+        if(RadioUsuario.isOn() == true){
             System.out.println("La radio actualmente se encuentra apagada, desea encenderla para iniciar con la simulacion?");
             System.out.println("1.Si, deseo encenderla");
             System.out.println("2.No, deseo salir de la simulacion");

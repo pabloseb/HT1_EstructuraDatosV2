@@ -1,3 +1,10 @@
+/**
+ * @author Pablo Herrera, Pedro Marroquin & Jose Auyon
+ * @since 22/01/2022
+ * @version 2.0
+ * 
+ * Esta es la clase que lleva la logica del programa.
+ */
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
