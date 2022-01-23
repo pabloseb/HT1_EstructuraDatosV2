@@ -8,8 +8,9 @@ public class Radio_Object implements Radio{
     private boolean Frequency = false;//falso para modulacion AM, Verdadero para Modulacion FM
     private double AmStation = 530;
     private double FmStation = 87.9;
-    private double[] FmStations = {87.9,87.9,87.9,87.9,87.9,87.9};
-    private double[] AmStations = {530,530,530,530,530,530};
+    private double CurrentStation;
+    private double[] FavoriteStations = {530,530,530,530,530,530,87.9,87.9,87.9,87.9,87.9,87.9};
+
 /**
  * Regresa estado Actual de la Radio
  */
@@ -36,7 +37,6 @@ public class Radio_Object implements Radio{
         if(frequency == false){
             AmStation = AmStation+10;
             if(AmStation > 1610){
-                System.out.println("No hay mas emisoras, regresando a la emisora inicial");
                 AmStation = 530;
             }
         }else{
@@ -45,7 +45,6 @@ public class Radio_Object implements Radio{
             double Emisora = new BigDecimal(emisora_siguiente).setScale(1,RoundingMode.HALF_EVEN).doubleValue();
             FmStation = Emisora;
             if(FmStation > 107.9){
-                System.out.println("No hay mas emisoras, regresando a la emisora Inicial");
                 FmStation = 87.9;
             }
         }
@@ -58,8 +57,6 @@ public class Radio_Object implements Radio{
         if(frequency == false){
             AmStation = AmStation-10;
             if(AmStation < 530){
-                System.out.println("No hay mas emisoras, regresando a la emisora final");
-                AmStation = 1610;
             }
         }else{
             double emisora_siguiente = FmStation;
@@ -67,7 +64,6 @@ public class Radio_Object implements Radio{
             double Emisora = new BigDecimal(emisora_siguiente).setScale(1,RoundingMode.HALF_EVEN).doubleValue();
             FmStation = Emisora;
             if(FmStation < 87.9){
-                System.out.println("No hay mas emisoras, regresando a la emisora final");
                 FmStation = 107.9;
             }
         }
@@ -79,37 +75,112 @@ public class Radio_Object implements Radio{
     @Override
     public double getStation() {
         if(Frequency == false){
-            return AmStation;
+            CurrentStation = AmStation;
         }else{
-            return FmStation;
+            CurrentStation = FmStation;
         }
+        return CurrentStation;
     }
 /**
  * Guarda una estacion dependiendo de la modulacion y la emisora que suena
  */
     @Override
     public void saveStation(int position, double station) {
-        if(this.Frequency == true){
-            FmStations[position] = station;
-        }else if(this.Frequency == false){
-            AmStations[position] = station;
-        }
+        if(Frequency == false){
+            switch(position){
+                case 1:
+                FavoriteStations[0] = station;
+                break;
+                case 2:
+                FavoriteStations[1] = station;
+                break;
+                case 3:
+                FavoriteStations[2] = station;
+                break;
+                case 4:
+                FavoriteStations[3] = station;
+                break;
+                case 5:
+                FavoriteStations[4] = station;
+                break;
+                case 6:
+                FavoriteStations[5] = station;
+                break;
+            }//escoge una posicion
+        }//se encuentra en AM
         else{
-            System.out.println("No se pudo agregar su emisora a alguna lista");
-        }
+            switch(position){
+                case 1:
+                FavoriteStations[6] = station;
+                break;
+                case 2:
+                FavoriteStations[7] = station;
+                break;
+                case 3:
+                FavoriteStations[8] = station;
+                break;
+                case 4:
+                FavoriteStations[9] = station;
+                break;
+                case 5:
+                FavoriteStations[10] = station;
+                break;
+                case 6:
+                FavoriteStations[11] = station;
+                break;
+            }
+        }//usuario se encuentra en FM
     }
 /**
  * Obtiene las emisoras Favoritas guardads
  */
     @Override
     public double getSavedStation(int position) {
-        double SavedStation;
         if(Frequency == false){
-            SavedStation = AmStations[position];
-        }else{
-            SavedStation = FmStations[position];
-        }
-        return SavedStation;
+            switch(position){
+                case 1:
+                AmStation = FavoriteStations[0];
+                break;
+                case 2:
+                AmStation = FavoriteStations[1];
+                break;
+                case 3:
+                AmStation = FavoriteStations[2];
+                break;
+                case 4:
+                AmStation = FavoriteStations[3];
+                break;
+                case 5:
+                AmStation = FavoriteStations[4];
+                break;
+                case 6:
+                AmStation = FavoriteStations[5];
+                break;
+            }
+            CurrentStation = AmStation;
+        }//se encuentra en AM
+        if(Frequency == true){
+            if(position==1){
+                FmStation = FavoriteStations[6];
+            }
+            if(position==2){
+                FmStation = FavoriteStations[7];
+            }
+            if(position==3){
+                FmStation = FavoriteStations[8];
+            }
+            if(position==4){
+                FmStation = FavoriteStations[9];
+            }
+            if(position==5){
+                FmStation = FavoriteStations[10];
+            }
+            if(position==6){
+                FmStation = FavoriteStations[11];
+            }
+            CurrentStation = FmStation;
+        }//se encuentra en FM
+        return CurrentStation;
     }
 /**
  * Obtiene la modulacion en la que se encuentra la radio
@@ -130,25 +201,5 @@ public class Radio_Object implements Radio{
         }
         
     }
-//-----------Getters---------------/
-public double getAmStation() {
-    return AmStation;
-}
-public double[] getAmStations() {
-    return AmStations;
-}
-public double getFmStation() {
-    return FmStation;
-}
-public double[] getFmStations() {
-    return FmStations;
-}
-//setters
-public void setAmStation(double amStation) {
-    AmStation = amStation;
-}
-public void setFmStation(double fmStation) {
-    FmStation = fmStation;
-}
 
 }

@@ -43,6 +43,12 @@ public class Manejador {
             return false;
         }
     }
-
+public void ShutDownWarning(){
+    try {
+        Thread.sleep(3500);//muestra el mensaje por 5 segundos
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
     
 }
